@@ -1,0 +1,21 @@
+﻿<Window x:Class="SP_AUS_GUI.DetailWindows.PersonDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_AUS_GUI.DetailWindows"
+        mc:Ignorable="d"
+        Title="Pacient" Height="450" Width="800" MinHeight="300" MinWidth="300">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Krstné meno:"/>
+            <TextBox Text="{Binding FirstName, Mode=OneWay}" IsReadOnly="True"/>
+            <TextBlock Text="Priezvisko:"/>
+            <TextBox Text="{Binding LastName, Mode=OneWay}" IsReadOnly="True"/>
+            <TextBlock Text="Dátum narodenia:"/>
+            <TextBox Text="{Binding DateOfBirth, Mode=OneWay}" IsReadOnly="True"/>
+            <TextBlock Text="Číslo pacienta:"/>
+            <TextBox Text="{Binding PatientNumber, Mode=OneWay}" IsReadOnly="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

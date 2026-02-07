@@ -1,0 +1,23 @@
+﻿<Window x:Class="SP_AUS_GUI.ListWindows.DistrictsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_AUS_GUI.ListWindows"
+        mc:Ignorable="d"
+        Title="Okresy" Height="450" Width="800">
+    <DockPanel Margin="10">
+        <TextBlock DockPanel.Dock="Top" Name="TextBlockDescription" FontWeight="Bold" Text=""></TextBlock>
+        <DataGrid DockPanel.Dock="Bottom" x:Name="AreasListGrid"
+                        AutoGenerateColumns="False"
+                        ItemsSource="{Binding Areas}"
+                        SelectionMode="Single"
+                        IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=ID}" Header="Číslo okresu"/>
+                <DataGridTextColumn Binding="{Binding Path=SickCount}" Header="Počet chorých"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

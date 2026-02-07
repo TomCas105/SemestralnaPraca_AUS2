@@ -1,0 +1,91 @@
+﻿<Window x:Class="SP_AUS_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_AUS_GUI"
+        mc:Ignorable="d"
+        Title="Databáza PCR testov" Height="600" Width="1000">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Background="LightGray">
+            <Menu Name="Menu" DockPanel.Dock="Top" Background="Gray"  BorderThickness="1" FontSize="12" Margin="1">
+                <MenuItem Header="_Dáta" Background="White">
+                    <MenuItem Header="Importovať osoby zo súboru" Click="ImportPersons"/>
+                    <MenuItem Header="Exportovať osoby do súboru" Click="ExportPersons"/>
+                    <MenuItem Header="Importovať PCR testy zo súboru" Click="ImportPCRTests"/>
+                    <MenuItem Header="Exportovať PCR testy do súboru" Click="ExportPCRTests"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Generovať dáta" Click="GenerateData"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Vymazať všetky dáta" Click="ClearDatabase"/>
+                </MenuItem>
+                <MenuItem Header="_Úlohy" Background="White">
+                    <MenuItem Header="Úloha 1 - Vloženie PCR testu" Click="ExecuteTask1"/>
+                    <MenuItem Header="Úloha 2 - Vyhľadanie PCR testu pacienta" Click="ExecuteTask2"/>
+                    <MenuItem Header="Úloha 3 - Vypis testov pacienta" Click="ExecuteTask3"/>
+                    <MenuItem Header="Úloha 4 - Vypis pozitivnych testov v okrese v období" Click="ExecuteTask4"/>
+                    <MenuItem Header="Úloha 5 - Vypis testov v okrese v období" Click="ExecuteTask5"/>
+                    <MenuItem Header="Úloha 6 - Vypis pozitivnych testov v kraji v období" Click="ExecuteTask6"/>
+                    <MenuItem Header="Úloha 7 - Vypis testov v kraji v období" Click="ExecuteTask7"/>
+                    <MenuItem Header="Úloha 8 - Vypis pozitivnych testov v období" Click="ExecuteTask8"/>
+                    <MenuItem Header="Úloha 9 - Vypis testov v období" Click="ExecuteTask9"/>
+                    <MenuItem Header="Úloha 10 - Výpis chorých osôb v okrese k dátumu" Click="ExecuteTask10"/>
+                    <MenuItem Header="Úloha 11 - Výpis chorých osôb v okrese k dátumu podľa hodnoty testu" Click="ExecuteTask11"/>
+                    <MenuItem Header="Úloha 12 - Výpis chorých osôb v kraji k dátumu" Click="ExecuteTask12"/>
+                    <MenuItem Header="Úloha 13 - Výpis chorých osôb k dátumu" Click="ExecuteTask13"/>
+                    <MenuItem Header="Úloha 14 - Výpis chorej osoby s najvyššou hodnotou testu z každého okresu k dátumu" Click="ExecuteTask14"/>
+                    <MenuItem Header="Úloha 15 - Výpis okresov podľa chorých osôb k dátumu" Click="ExecuteTask15"/>
+                    <MenuItem Header="Úloha 16 - Výpis krajov podľa chorých osôb k dátumu" Click="ExecuteTask16"/>
+                    <MenuItem Header="Úloha 17 - Výpis testov v pracovisku v odbobí" Click="ExecuteTask17"/>
+                    <MenuItem Header="Úloha 18 - Vyhľadanie PCR testu podľa čísla" Click="ExecuteTask18"/>
+                    <MenuItem Header="Úloha 19 - Vloženie osoby" Click="ExecuteTask19"/>
+                    <MenuItem Header="Úloha 20 - Vymazanie PCR testu" Click="ExecuteTask20"/>
+                    <MenuItem Header="Úloha 21 - Vymazanie osoby" Click="ExecuteTask21"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <DockPanel DockPanel.Dock="Bottom" Margin="10">
+
+            <DockPanel DockPanel.Dock="Left" Background="White" Margin="2">
+                <TextBlock Name="TextBlock_Person" FontWeight="Bold" Text="Pacienti" DockPanel.Dock="Top" Margin="5, 5, 0, 0"></TextBlock>
+                <DataGrid x:Name="PersonsListGrid"
+                            AutoGenerateColumns="False"
+                            SelectionMode="Single"
+                            MouseDoubleClick="PersonsListGrid_MouseDoubleClick"
+                            IsReadOnly="True">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=FirstName}" Header="Krstné meno"/>
+                        <DataGridTextColumn Binding="{Binding Path=LastName}" Header="Priezvisko"/>
+                        <DataGridTextColumn Binding="{Binding Path=DateOfBirth}" Header="Dátum narodenia"/>
+                        <DataGridTextColumn Binding="{Binding Path=PatientNumber}" Header="Číslo pacienta"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+
+            <DockPanel DockPanel.Dock="Left" Background="White" Margin="2">
+                <TextBlock Name="TextBlock_PCRTest"  FontWeight="Bold" Text="PCR Testy" DockPanel.Dock="Top" Margin="5, 5, 0, 0"></TextBlock>
+                <DataGrid x:Name="TestsListGrid"
+                            AutoGenerateColumns="False"
+                            SelectionMode="Single"
+                            MouseDoubleClick="TestsListGrid_MouseDoubleClick"
+                            IsReadOnly="True">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=TestNumber}" Header="Číslo testu"/>
+                        <DataGridTextColumn Binding="{Binding Path=PatientNumber}" Header="Číslo pacienta"/>
+                        <DataGridTextColumn Binding="{Binding Path=TestDate}" Header="Dátum testu"/>
+                        <DataGridTextColumn Binding="{Binding Path=TestTime}" Header="Čas testu"/>
+                        <DataGridTextColumn Binding="{Binding Path=TestResultListDisplay}" Header="Pozitívny"/>
+                        <DataGridTextColumn Binding="{Binding Path=Workplace}" Header="Pracovisko"/>
+                        <DataGridTextColumn Binding="{Binding Path=District}" Header="Okres"/>
+                        <DataGridTextColumn Binding="{Binding Path=Region}" Header="Kraj"/>
+                        <DataGridTextColumn Binding="{Binding Path=TestValueDisplay}" Header="Hodnota testu"/>
+                        <DataGridTextColumn Binding="{Binding Path=Comment}" Header="Poznámka"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</Window>

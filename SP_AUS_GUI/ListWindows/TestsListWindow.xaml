@@ -1,0 +1,32 @@
+﻿<Window x:Class="SP_AUS_GUI.ListWindows.TestsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_AUS_GUI.ListWindows"
+        mc:Ignorable="d"
+        Title="PCR Testy" Height="450" Width="800">
+    <DockPanel Margin="10">
+        <TextBlock DockPanel.Dock="Top" Name="TextBlockDescription" FontWeight="Bold" Text=""></TextBlock>
+        <DataGrid DockPanel.Dock="Bottom" x:Name="TestsListGrid"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Tests}"
+                  SelectionMode="Single"
+                  MouseDoubleClick="TestsListGrid_MouseDoubleClick"
+                  IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=TestNumber}" Header="Číslo testu"/>
+                <DataGridTextColumn Binding="{Binding Path=PatientNumber}" Header="Číslo pacienta"/>
+                <DataGridTextColumn Binding="{Binding Path=TestDate}" Header="Dátum testu"/>
+                <DataGridTextColumn Binding="{Binding Path=TestTime}" Header="Čas testu"/>
+                <DataGridTextColumn Binding="{Binding Path=TestResultListDisplay}" Header="Pozitívny"/>
+                <DataGridTextColumn Binding="{Binding Path=Workplace}" Header="Pracovisko"/>
+                <DataGridTextColumn Binding="{Binding Path=District}" Header="Okres"/>
+                <DataGridTextColumn Binding="{Binding Path=Region}" Header="Kraj"/>
+                <DataGridTextColumn Binding="{Binding Path=TestValueDisplay}" Header="Hodnota testu"/>
+                <DataGridTextColumn Binding="{Binding Path=Comment}" Header="Poznámka"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
